@@ -1,0 +1,42 @@
+import java.util.*;
+
+public class Test {
+	public boolean isMatch(String s, String p) {
+        if(s == null || p == null) return true;
+        int indexs = 0;
+        int indexp = 0;
+        
+        while(indexs < s.length() - 1 && indexp < p.length() - 1) {
+            if(p.charAt(indexp + 1) == '*' && s.charAt(indexs + 1) == p.charAt(indexs)) {
+                if(indexs == s.length() - 2) {
+                    return true;
+                }
+                else indexs++;
+            }
+            if((s.charAt(indexs) == p.charAt(indexp)) || p.charAt(indexp) == '.') {
+                indexs++;
+                indexp++;
+            }
+            else indexp++;
+            
+        }
+        indexp++;
+        indexs++;
+        if(indexp < p.length() && p.charAt(indexp) == '.') return true;
+        else if(indexp < p.length() && indexs < s.length() 
+                && p.charAt(indexp) == '*' && s.charAt(s.length() - 1) == s.charAt(s.length() - 2) ) return true;
+        else if(indexp < p.length() && indexs < s.length()
+                && (s.charAt(indexs) == p.charAt(indexp))) return true;
+        return false;
+    }
+    public static void main(String[] arug) {
+
+    	int[][] a = new int[][]{{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
+    	int[] c = new int[]{1, -1};
+    	//Test.shortestDistance(a);
+    	 Test b = new Test();
+    	 b.isMatch("aa", "aa");
+
+
+    }
+}

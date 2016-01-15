@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class Test {
+	public List<Integer> majorityElement(int[] nums) {
+        List<Integer> res = new ArrayList<Integer>();
+        if(nums == null || nums.length == 0) return res;
+        else if(nums.length < 3) {
+            res.add(nums[0]);
+            if(nums.length == 2 && nums[0] != nums[1]) res.add(nums[1]); 
+            return res;
+        }
+  
+        int[] count = {0, 0};
+        int[] num = {nums[1], nums[2]};
+        for(int i = 2; i < nums.length; i++) {
+            if(num[0] != nums[i] && num[1] != nums[i]) {
+                count[0]--;
+                count[1]--;
+            }
+            else if(num[0] == nums[i]) count[0]++;
+            else if(num[1] == nums[i]) count[1]++;
+            
+            if(count[0] < 0) {
+                num[0] = nums[i];
+                count[0] = 0;
+            }
+            else if(count[1] < 0) {
+                num[1] = nums[i];
+                count[1] = 0;
+            }
+        }
+        if(count[0] > 0) res.add(num[0]);
+        if(count[1] > 0 && num[0] != num[1]) res.add(num[1]);
+        return res;
+    }
+    public static void main(String[] arug) {
+
+    	int[][] a = new int[][]{{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
+    	int[] c = new int[]{1,2,3};
+    	//Test.shortestDistance(a);
+    	 Test b = new Test();
+    	 b.majorityElement(c);
+
+
+    }
+}

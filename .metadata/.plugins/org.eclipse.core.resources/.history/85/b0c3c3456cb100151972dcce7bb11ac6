@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Test {
+	public String fractionToDecimal(int numerator, int denominator) {
+        StringBuilder sb = new StringBuilder();
+        if(denominator == 0) return sb.toString();
+        else if(numerator == 0) return "0";
+        
+        if((numerator ^ denominator) < 0) sb.append('-');
+        numerator = Math.abs(numerator);
+        if(denominator < 0) denominator = -denominator;
+        sb.append(numerator / denominator);
+        numerator %= denominator;
+        if(numerator != 0) sb.append(".");
+        
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        int index = sb.indexOf(".") + 1;
+        while(true) {
+            if(numerator == 0) break;
+            if(numerator < denominator) numerator *= 10;
+            if(map.containsKey(numerator)) {
+                int key = map.get(numerator);
+                sb.insert(key, '(').append(')');
+                break;
+            }
+            else map.put(numerator, index++);
+            sb.append(numerator / denominator);
+            numerator = numerator % denominator;
+            
+        }
+        return sb.toString();
+    }
+    public static void main(String[] arug) {
+
+    	int[][] a = new int[][]{{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
+    	int[] c = new int[]{0,9,5,7,3};
+    	//Test.shortestDistance(a);
+    	 Test b = new Test();
+    	 b.fractionToDecimal(-1, -2147483648);
+
+
+    }
+}

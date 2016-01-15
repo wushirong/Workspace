@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class Test {
+	public void remove(String s) {
+        String[] as = new String[10];
+        Object[] ao = new Object[10];
+        ao = as;
+        as[0] = 2110;
+        String st = as[0];
+    }
+    public static void main(String[] arug) {
+    	Test t = new Test();
+    	t.removeInvalidParentheses(")()()i)())b(())h))))");
+    }
+}

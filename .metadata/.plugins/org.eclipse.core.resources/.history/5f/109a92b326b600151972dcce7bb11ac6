@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class Test {
+	public int[] maxSlidingWindow(int[] nums, int k) {
+        int[] res = new int[nums.length - k + 1];
+        if(nums == null || nums.length == 0 || k == 0) return new int[0];
+        List<Integer> list = new ArrayList<Integer>();
+        int start = 0;
+        int end = start + k - 1;
+        int max = nums[0];
+        int maxIndex = 0;
+        boolean update = false;
+        for(int j = start; j <= end; j++) {
+            if(nums[j] > max) {
+            	max = nums[j];
+            	maxIndex = j;
+            } 
+        }
+        list.add(max);
+        for(int i = end + 1; i < nums.length; i++) {
+            if(nums[i] > max) {
+                max = nums[i];
+                maxIndex = i;
+                start++;
+                end++;
+                list.add(max);
+            }
+            else if(maxIndex == start) {
+                start++;
+                end++;
+                if(start >= nums.length) break;
+                for(int j = start; j < end; j++) {
+                    if(nums[j] > max) {
+                        max = nums[j];
+                        maxIndex = j;
+                        update = true;
+                    }
+                }
+                if(update) list.add(max);
+            }
+            else {
+                start++;
+                end++;
+                list.add(max);
+            }
+        }
+        int index = 0;
+        for(Integer item: list) res[index++] = item;
+        return res;
+    }
+    public static void main(String[] arug) {
+
+    	int[][] a = new int[][]{{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
+    	int[] c = new int[]{1, -1};
+    	//Test.shortestDistance(a);
+    	 Test b = new Test();
+    	 b.maxSlidingWindow(c, 1);
+
+
+    }
+}

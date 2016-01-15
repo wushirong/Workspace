@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;HW2.java&apos; to &apos;Date.java&apos;&#x0A;- Original project: &apos;HW2&apos;&#x0A;- Original element: &apos;HW2.java&apos;&#x0A;- Renamed element: &apos;Date.java&apos;" description="Rename compilation unit &apos;HW2.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{HW2.java" name="Date.java" references="false" stamp="1430111340858" version="1.0"/>
+</session>

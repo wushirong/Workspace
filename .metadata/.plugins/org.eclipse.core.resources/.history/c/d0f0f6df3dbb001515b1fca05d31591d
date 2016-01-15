@@ -1,0 +1,38 @@
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
+
+
+public class NetClient {
+	public static int UDP_PORT_START = 2333;
+	public int udpPort;
+	
+	public NetClient() {
+		udpPort = UDP_PORT_START++;
+	}
+	
+	public void connect(String IP, int port) {
+		Socket s = null;
+		try {
+			s = new Socket(IP, port);
+			DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+			dos.writeInt(udpPort);
+			DataInputStream dis = new DataInputStream(s.getInputStream());
+			int id = dis.readInt();
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				s.close();
+				s = null;
+			} catch (IOException e) {
+		
+				e.printStackTrace();
+			}
+		}
+		
+	}
+}

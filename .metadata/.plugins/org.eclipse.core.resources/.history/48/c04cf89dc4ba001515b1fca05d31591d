@@ -1,0 +1,45 @@
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+
+public class TankServer {
+	
+	public static final int TCP_PORT = 8888;
+	List<Client> client = new ArrayList<Client>();
+	
+	public void start() {
+		// TODO Auto-generated method stub
+		try {
+			ServerSocket ss = new ServerSocket(TCP_PORT);
+			
+			while(true) {
+				Socket socket = ss.accept();
+				DataInputStream dis = new DataInputStream(socket.getInputStream());
+				String IP = ss.getInetAddress().getHostAddress();
+				int udpPort = dis.readInt();
+				Client d = new Client(IP, udpPort);
+				System.out.println("A Client is connected " + ss.getInetAddress() + ":" + socket.getPort());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		new TankServer().start();
+		
+	}
+	private class Client {
+		String IP;
+		int udpPort;
+		public Client(String IP, int port) {
+			this.IP = IP;
+			this.udpPort = port;
+		}
+	}
+
+}

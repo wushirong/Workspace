@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;light&apos; in &apos;TreeMap.getSplit(...)&apos; to &apos;mTok&apos;&#x0A;- Original project: &apos;A5&apos;&#x0A;- Original element: &apos;TreeMap.getSplit(List&lt;Node&gt;, int, int).light&apos;&#x0A;- Renamed element: &apos;light&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;light&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/&lt;{TreeMap.java[TreeMap~getSplit~QList\&lt;QNode;&gt;;~I~I@light!8720!8736!8727!8731!D!0!false" name="mTok" references="true" stamp="1445036955625" version="1.0"/>
+</session>

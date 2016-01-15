@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Test {
+	public int divide(int dividend, int divisor) {
+        if(dividend == 0) return Integer.MAX_VALUE;
+        if(divisor == 0 || dividend < divisor) return 0;
+        boolean neg = dividend < 0 != divisor < 0;
+        if(dividend < 0) dividend  = -dividend;
+        if(divisor < 0) divisor = -divisor;
+        
+        if(dividend == divisor) return 1;
+        long res = divideLong(dividend, divisor);
+        return res > Integer.MAX_VALUE? Integer.MAX_VALUE : (int)res;
+    }
+    
+    private long divideLong(int dividend, int divisor) {
+        if(dividend < divisor) return 0;
+        boolean neg = dividend < 0 != divisor < 0;
+        int sum = divisor;
+        long res = 1;
+        if(dividend < 0) dividend  = -dividend;
+        if(divisor < 0) divisor = -divisor;
+        while(sum+sum <= dividend) {
+            res+= res;
+            sum += sum;
+        }
+        return neg? -res - divideLong(dividend - sum, divisor) : res + divideLong(dividend - sum, divisor);
+    }
+    public static void main(String[] arug) {
+
+    	int[][] a = new int[][]{{1,0,2,0,1},{0,0,0,0,0},{0,0,1,0,0}};
+    	int[] c = new int[]{1, -1};
+    	//Test.shortestDistance(a);
+    	 Test b = new Test();
+    	 int res = b.divide(2147483647 ,1);
+
+
+    }
+}

@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Test {
+	public static int maxSubArray(int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+        int res = Integer.MIN_VALUE;
+        int sum = 0;
+        int walker = 0;
+        int runner = 0;
+        for(runner = 0; walker < nums.length && runner < nums.length; runner ++) {
+            sum += nums[runner];
+            if(sum - nums[walker] > sum && runner-walker > 1) {
+                sum -= nums[walker];
+                walker ++;
+            }
+            res = sum > res? sum:res;
+            
+        }
+        return res;
+    }
+
+    
+    public static void main(String[] arug) {
+    	int[][] numMatrix = new int[][]{{3,0,1,4,2},{5,6,3,2,1},{1,2,0,1,5},{4,1,0,1,7},{1,0,3,0,5}};
+    	int[] a = new int[]{-2,1};
+
+    	int[] b = new int[]{3,4};
+    	maxSubArray(a);
+    	
+    }
+}

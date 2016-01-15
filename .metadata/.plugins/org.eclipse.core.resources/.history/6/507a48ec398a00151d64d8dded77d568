@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class Test {
+	public List<String> removeInvalidParentheses(String s) {
+        List<String> res = new ArrayList<String>();
+        LinkedList<String> item = new LinkedList<String>();
+        if(s == null) return res;
+        item.add(s);
+        boolean find = false;
+        while(!item.isEmpty()) {
+            String str = item.poll();
+            if(helper(str)) {
+                res.add(str);
+                find = true;
+            }
+            if(find) continue;
+            for(int i = 0; i < str.length(); i++) {
+                if(str.charAt(i) != '(' && str.charAt(i) != ')') continue;
+                String substr = str.substring(0,i) + str.substring(i+1);
+                if(!item.contains(substr)) {
+                    item.add(substr);
+                }
+            }
+        }
+        return res;
+    }
+    private boolean helper(String s) {
+        if(s == null) return true;
+        Stack<Character> res = new Stack<>();
+        
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(c != '(' && c != ')') continue;
+            if(c == '(') {
+                res.push(c);
+            }
+            else if(c == ')') {
+            	if(!res.isEmpty()) res.pop();
+            	else return false;
+            }
+            
+        }
+        return res.isEmpty()?true : false;
+    }
+    public static void main(String[] arug) {
+    	Test t = new Test();
+    	t.removeInvalidParentheses(")()()i)())b(())h))))");
+    }
+}
